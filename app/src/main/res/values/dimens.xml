@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_1">10sp</dimen>
+    <dimen name="font_size_2">12sp</dimen>
+    <dimen name="font_size_3">14sp</dimen>
+    <dimen name="font_size_4">16sp</dimen>
+    <dimen name="font_size_5">18sp</dimen>
+    <dimen name="font_size_6">20sp</dimen>
+    <dimen name="font_size_7">24sp</dimen>
+    <dimen name="font_size_8">28sp</dimen>
+    <dimen name="font_size_9">32sp</dimen>
+    <dimen name="font_size_10">36sp</dimen>
+    <dimen name="font_size_11">40sp</dimen>
+    <dimen name="font_size_12">48sp</dimen>
+</resources>
