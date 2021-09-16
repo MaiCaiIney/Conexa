@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Conexa" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/specific_background_inverse</item>
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorOnPrimary">@color/specific_background_inverse</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorOnSecondary">@color/orange_40</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/specific_background_inverse</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <color name="colorText">@color/specific_content_inverse</color>
+    <color name="colorBackground">@color/specific_background_inverse</color>
+
+</resources>

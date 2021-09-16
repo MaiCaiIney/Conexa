@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">#00A5CD</color>
+    <color name="blue_40">#6600A5CD</color>
+    <color name="orange">#ff7166</color>
+    <color name="orange_40">#66FF7166</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="specific_content">#3A3C3F</color>
+    <color name="specific_content_inverse">@color/white</color>
+    <color name="specific_content_disabled">#B6B7B7</color>
+
+    <color name="specific_background">@color/white</color>
+    <color name="specific_background_inverse">#3A3C3F</color>
+    <color name="specific_background_disabled">#DDDEDD</color>
+</resources>
