@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Desafío Conexa</string>
+
+    <!-- String related to product detail -->
+    <string name="product_detail_button_add">Agregar al carrito</string>
 </resources>

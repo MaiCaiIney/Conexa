@@ -12,10 +12,22 @@
         <action
             android:id="@+id/action_fragment_products_to_fragment_filter_products"
             app:destination="@id/fragment_filter_products" />
+        <action
+            android:id="@+id/action_fragment_products_to_fragment_product_detail"
+            app:destination="@id/fragment_product_detail"
+            app:enterAnim="@anim/fragment_enter_from_right"
+            app:exitAnim="@anim/fragment_exit_to_right"
+            app:popEnterAnim="@anim/fragment_enter_from_left"
+            app:popExitAnim="@anim/fragment_exit_to_left" />
     </fragment>
 
     <dialog
         android:id="@+id/fragment_filter_products"
         android:name="com.conexa.challenge.ui.home.filter.CategoriesFragment"
         tools:layout="@layout/fragment_categories_list" />
+
+    <fragment
+        android:id="@+id/fragment_product_detail"
+        android:name="com.conexa.challenge.ui.home.products.detail.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail" />
 </navigation>

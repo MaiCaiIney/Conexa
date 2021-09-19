@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.conexa.challenge.R
 import com.conexa.challenge.databinding.FragmentProductsBinding
+import com.conexa.challenge.ui.home.products.detail.ProductDetailFragment
 import com.conexa.challenge.viewmodel.ProductsViewModel
 import com.xwray.groupie.GroupieAdapter
+import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -70,11 +71,20 @@ class ProductsFragment : Fragment() {
     }
 
     private fun initLayout() {
-        adapter = GroupieAdapter()
+        adapter = GroupieAdapter().apply {
+            setOnItemClickListener(navigateToProductDetail)
+        }
         binding.rvProducts.adapter = adapter
     }
 
     private fun navigateToCategories() {
         findNavController().navigate(R.id.action_fragment_products_to_fragment_filter_products)
+    }
+
+    private val navigateToProductDetail = OnItemClickListener { item, _ ->
+        val bundle = Bundle().apply {
+            putSerializable(ProductDetailFragment.EXTRA_PRODUCT, (item as ProductItem).product)
+        }
+        findNavController().navigate(R.id.action_fragment_products_to_fragment_product_detail, bundle)
     }
 }

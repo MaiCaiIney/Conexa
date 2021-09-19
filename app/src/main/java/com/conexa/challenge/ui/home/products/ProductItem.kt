@@ -7,9 +7,8 @@ import com.conexa.challenge.model.Product
 import com.conexa.challenge.utils.formatPrice
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.viewbinding.BindableItem
-import java.util.*
 
-class ProductItem(private val product: Product): BindableItem<ItemProductBinding>() {
+class ProductItem(val product: Product): BindableItem<ItemProductBinding>() {
 
     override fun bind(viewBinding: ItemProductBinding, position: Int) {
         viewBinding.tvProductName.text = product.title
