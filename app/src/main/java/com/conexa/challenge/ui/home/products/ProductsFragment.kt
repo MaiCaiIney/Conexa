@@ -2,6 +2,7 @@ package com.conexa.challenge.ui.home.products
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -35,7 +36,7 @@ class ProductsFragment : Fragment() {
         binding = FragmentProductsBinding.inflate(inflater, container, false)
 
         initLayout()
-        setObservers()
+        subscribeUi()
 
         return binding.root
     }
@@ -57,24 +58,30 @@ class ProductsFragment : Fragment() {
         }
     }
 
-    private fun setObservers() {
+    private fun subscribeUi() {
         viewModel.products.observe(viewLifecycleOwner, {
             it?.data?.map { product -> ProductItem(product) }?.let { list ->
-                adapter.add(Section().apply {
-                    val updatingGroup = Section()
-                    val updatableItems = ArrayList<ProductItem>(list)
-                    updatingGroup.update(updatableItems)
-                    add(updatingGroup)
-                })
+                adapter.replaceAll(list)
             }
+        })
+
+        viewModel.filter.observe(viewLifecycleOwner, {
+            binding.tvProductsFilter.isVisible = it != null
+            binding.tvProductsFilter.text = it
         })
     }
 
     private fun initLayout() {
         adapter = GroupieAdapter().apply {
             setOnItemClickListener(navigateToProductDetail)
+            add(Section().apply {
+                val updatingGroup = Section()
+                add(updatingGroup)
+            })
         }
         binding.rvProducts.adapter = adapter
+
+        binding.tvProductsFilter.setOnClickListener { viewModel.searchProducts() }
     }
 
     private fun navigateToCategories() {

@@ -6,13 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.products.ProductsFragment">
 
+    <TextView
+        android:id="@+id/tv_products_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/tag_background"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="2dp"
+        android:textAppearance="@style/Heading.XL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Categoría" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_products"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_products_filter"
         app:spanCount="1"
         tools:listitem="@layout/item_product" />
 

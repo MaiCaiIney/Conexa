@@ -24,10 +24,14 @@ class ProductsViewModel @Inject constructor(
     private val _categories = MutableLiveData<Resource<List<String>>>()
     val categories: LiveData<Resource<List<String>>> = _categories
 
-    fun searchProducts() = viewModelScope.launch(Dispatchers.Main) {
+    private val _filter = MutableLiveData<String?>()
+    val filter: LiveData<String?> = _filter
+
+    fun searchProducts(category: String? = null) = viewModelScope.launch(Dispatchers.Main) {
         _products.postValue(Resource.loading())
+        _filter.postValue(category)
         val result = withContext(Dispatchers.IO) {
-            repository.products()
+            repository.products(category)
         }
         _products.postValue(result)
     }

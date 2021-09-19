@@ -24,7 +24,7 @@
     <dialog
         android:id="@+id/fragment_filter_products"
         android:name="com.conexa.challenge.ui.home.filter.CategoriesFragment"
-        tools:layout="@layout/fragment_categories_list" />
+        tools:layout="@layout/fragment_categories" />
 
     <fragment
         android:id="@+id/fragment_product_detail"

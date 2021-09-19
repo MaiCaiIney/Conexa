@@ -7,32 +7,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.conexa.challenge.R
-import com.conexa.challenge.databinding.FragmentCategoriesListBinding
+import com.conexa.challenge.databinding.FragmentCategoriesBinding
 import com.conexa.challenge.databinding.ItemCategoryBinding
 import com.conexa.challenge.viewmodel.ProductsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
 @AndroidEntryPoint
 class CategoriesFragment : BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentCategoriesListBinding
+    private lateinit var binding: FragmentCategoriesBinding
     private val viewModel by activityViewModels<ProductsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCategoriesListBinding.inflate(inflater, container, false)
+        binding = FragmentCategoriesBinding.inflate(inflater, container, false)
 
-        val adapter = CategoryAdapter()
-        binding.list.adapter = adapter
+        val adapter = CategoryAdapter(onClick = { category -> filter(category) })
+        binding.rvCategories.adapter = adapter
         subscribeUi(adapter)
 
         return binding.root
@@ -44,7 +44,12 @@ class CategoriesFragment : BottomSheetDialogFragment() {
         })
     }
 
-    private inner class CategoryAdapter :
+    private fun filter(category: String) {
+        viewModel.searchProducts(category)
+        findNavController().popBackStack()
+    }
+
+    private inner class CategoryAdapter(private val onClick: (category: String) -> Unit) :
         ListAdapter<String, CategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
 
         private val rainbow: IntArray by lazy { resources.getIntArray(R.array.rainbow) }
@@ -62,13 +67,19 @@ class CategoriesFragment : BottomSheetDialogFragment() {
             )
         }
 
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val category = getItem(position)
+            holder.bind(category)
+            holder.itemView.setOnClickListener { onClick.invoke(category) }
+        }
+
         private inner class ViewHolder(
             private val binding: ItemCategoryBinding,
-            private val color: Int
+            color: Int
         ) : RecyclerView.ViewHolder(binding.root) {
 
             init {
-                val unwrappedDrawable: Drawable = binding.text.background
+                val unwrappedDrawable: Drawable = binding.tvCategoryName.background
                 val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
                 DrawableCompat.setTint(
                     wrappedDrawable,
@@ -77,12 +88,8 @@ class CategoriesFragment : BottomSheetDialogFragment() {
             }
 
             fun bind(category: String) {
-                binding.text.text = category
+                binding.tvCategoryName.text = category
             }
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bind(getItem(position))
         }
     }
 }
