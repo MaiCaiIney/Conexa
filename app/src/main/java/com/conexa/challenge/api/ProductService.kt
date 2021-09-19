@@ -9,4 +9,6 @@ interface ProductService {
     @GET("products")
     suspend fun products(): Response<List<Product>>
 
+    @GET("products/categories")
+    suspend fun categories(): Response<List<String>>
 }

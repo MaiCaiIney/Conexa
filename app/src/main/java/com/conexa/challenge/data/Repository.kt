@@ -8,4 +8,5 @@ class Repository @Inject constructor(
 
     suspend fun products() = productDataSource.products()
 
+    suspend fun categories() = productDataSource.categories()
 }

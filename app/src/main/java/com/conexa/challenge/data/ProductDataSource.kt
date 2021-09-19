@@ -8,4 +8,5 @@ class ProductDataSource @Inject constructor(private val service: ProductService)
 
     suspend fun products() = getResult { service.products() }
 
+    suspend fun categories() = getResult { service.categories() }
 }
