@@ -1,4 +1,4 @@
-package com.conexa.challenge.ui.home.products
+package com.conexa.challenge.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

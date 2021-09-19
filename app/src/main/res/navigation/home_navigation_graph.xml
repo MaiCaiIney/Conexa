@@ -8,5 +8,14 @@
     <fragment
         android:id="@+id/fragment_products"
         android:name="com.conexa.challenge.ui.home.products.ProductsFragment"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products">
+        <action
+            android:id="@+id/action_fragment_products_to_fragment_filter_products"
+            app:destination="@id/fragment_filter_products" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/fragment_filter_products"
+        android:name="com.conexa.challenge.ui.home.filter.CategoriesFragment"
+        tools:layout="@layout/fragment_categories_list" />
 </navigation>

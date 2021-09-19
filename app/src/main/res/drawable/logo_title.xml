@@ -29,7 +29,7 @@
           android:pathData="M1.776,1.422h29.9v34.1h-29.9z"/>
       <path
           android:pathData="M1.976,1.422h29.8v33.9h-29.8z"
-          android:fillColor="@color/blue"/>
+          android:fillColor="@color/light_blue"/>
     </group>
   </group>
 </vector>

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue">#00A5CD</color>
-    <color name="blue_40">#6600A5CD</color>
+    <color name="light_blue">#00A5CD</color>
+    <color name="light_blue_40">#6600A5CD</color>
     <color name="orange">#ff7166</color>
     <color name="orange_40">#66FF7166</color>
+    <color name="red">#f52f42</color>
+    <color name="green">#2cb99c</color>
+    <color name="yellow">#f5bc5a</color>
+    <color name="blue">#006a9e</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
@@ -16,4 +20,13 @@
     <color name="specific_background">@color/white</color>
     <color name="specific_background_inverse">#3A3C3F</color>
     <color name="specific_background_disabled">#DDDEDD</color>
+
+    <array name="rainbow">
+        <item>@color/orange</item>
+        <item>@color/light_blue</item>
+        <item>@color/red</item>
+        <item>@color/green</item>
+        <item>@color/yellow</item>
+        <item>@color/blue</item>
+    </array>
 </resources>

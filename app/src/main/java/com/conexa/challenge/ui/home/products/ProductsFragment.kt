@@ -1,12 +1,14 @@
 package com.conexa.challenge.ui.home.products
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.conexa.challenge.R
 import com.conexa.challenge.databinding.FragmentProductsBinding
+import com.conexa.challenge.viewmodel.ProductsViewModel
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Section
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,9 +17,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class ProductsFragment : Fragment() {
 
     private lateinit var binding: FragmentProductsBinding
-    private val viewModel by viewModels<ProductsViewModel>()
+    private val viewModel by activityViewModels<ProductsViewModel>()
 
-    private lateinit var adapter : GroupieAdapter
+    private lateinit var adapter: GroupieAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,9 +39,25 @@ class ProductsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_products, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_item_filter -> {
+                navigateToCategories()
+                true
+            }
+            R.id.menu_item_cart ->
+                // TODO navegar al carrito
+                true
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun setObservers() {
         viewModel.products.observe(viewLifecycleOwner, {
-
             it?.data?.map { product -> ProductItem(product) }?.let { list ->
                 adapter.add(Section().apply {
                     val updatingGroup = Section()
@@ -49,5 +72,9 @@ class ProductsFragment : Fragment() {
     private fun initLayout() {
         adapter = GroupieAdapter()
         binding.rvProducts.adapter = adapter
+    }
+
+    private fun navigateToCategories() {
+        findNavController().navigate(R.id.action_fragment_products_to_fragment_filter_products)
     }
 }
