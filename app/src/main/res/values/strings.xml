@@ -1,13 +1,21 @@
 <resources>
     <string name="app_name">Challenge Conexa</string>
 
-    <!-- String related to product detail -->
-    <string name="product_detail_button_add">Add to cart</string>
+    <!-- String related to fragment_products -->
+    <string name="products_empty_title">No products found</string>
+    <string name="products_empty_description">You can search in another category!</string>
+    <string name="products_error_title">Ops!</string>
+    <string name="products_error_description">An error occurred. Please try again later.</string>
 
-    <!-- String related to cart -->
+    <!-- String related to fragment_product_detail -->
+    <string name="product_detail_button_add">Add to cart</string>
+    <string name="product_detail_toast_success">Product added to cart</string>
+
+    <!-- String related to fragment_cart -->
     <string name="cart_button_continue">Continue</string>
     <string name="cart_menu_clear">Clear</string>
     <string name="cart_total">Total</string>
     <string name="cart_empty_title">Your cart is empty</string>
     <string name="cart_empty_description">Not sure what to buy?\nThousands of products await you!</string>
+    <string name="cart_empty_toast">All products were removed from the cart</string>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:color="@color/specific_semantic_info_light" app:type_info="true" />
+    <item android:color="@color/specific_semantic_success_light" app:type_positive="true" />
+    <item android:color="@color/specific_semantic_warning_light" app:type_warning="true" />
+    <item android:color="@color/specific_semantic_danger_light" app:type_negative="true" />
+</selector>

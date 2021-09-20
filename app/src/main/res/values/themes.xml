@@ -38,7 +38,7 @@
 
     <style name="Theme.Conexa.Button" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textAppearance">@style/Button</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/global_basic_white</item>
         <item name="android:padding">16dp</item>
     </style>
 

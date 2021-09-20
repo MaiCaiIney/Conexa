@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="type_info" format="boolean" />
+    <attr name="type_warning" format="boolean" />
+    <attr name="type_positive" format="boolean" />
+    <attr name="type_negative" format="boolean" />
+</resources>

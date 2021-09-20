@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.conexa.challenge.R
 import com.conexa.challenge.databinding.FragmentProductDetailBinding
 import com.conexa.challenge.model.Product
 import com.conexa.challenge.utils.formatPrice
+import com.conexa.challenge.view.Toast
+import com.conexa.challenge.view.Type
 import com.conexa.challenge.viewmodel.CartViewModel
 import com.squareup.picasso.Picasso
 
@@ -43,7 +46,14 @@ class ProductDetailFragment : Fragment() {
 
             Picasso.get().load(product.image).into(ivProductDetailImage)
 
-            btProductDetailAdd.setOnClickListener { viewModel.addItem(product) }
+            btProductDetailAdd.setOnClickListener {
+                viewModel.addItem(product)
+                Toast.show(
+                    binding.root,
+                    R.string.product_detail_toast_success,
+                    Type.POSITIVE
+                )
+            }
         }
     }
 }

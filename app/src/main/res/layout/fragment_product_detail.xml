@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/global_basic_white"
     tools:context=".ui.home.products.detail.ProductDetailFragment">
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/cl_product_detail_content"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/white" />
+        tools:background="@color/global_basic_white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_product_detail_content"

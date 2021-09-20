@@ -8,18 +8,103 @@
     <color name="green">#2cb99c</color>
     <color name="yellow">#f5bc5a</color>
     <color name="blue">#006a9e</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="global_basic_black">#FF000000</color>
+    <color name="global_basic_white">#FFFFFFFF</color>
 
     <color name="global_gray_10">#F4F4F4</color>
+    <color name="global_gray_20">#EAEBEA</color>
+    <color name="global_gray_30">#DDDEDD</color>
+    <color name="global_gray_40">#D3D4D3</color>
+    <color name="global_gray_50">#B6B7B7</color>
+    <color name="global_gray_60">#94979A</color>
+    <color name="global_gray_70">#86888C</color>
+    <color name="global_gray_80">#6C6E72</color>
+    <color name="global_gray_90">#4A4D4F</color>
+    <color name="global_gray_100">#3A3C3F</color>
 
-    <color name="specific_content">#3A3C3F</color>
-    <color name="specific_content_inverse">@color/white</color>
-    <color name="specific_content_disabled">#B6B7B7</color>
+    <color name="global_primary_yellow_10">#FEFCE6</color>
+    <color name="global_primary_yellow_20">#FEF6BF</color>
+    <color name="global_primary_yellow_30">#FDEF95</color>
+    <color name="global_primary_yellow_40">#FCEA69</color>
+    <color name="global_primary_yellow_50">#F9E245</color>
+    <color name="global_primary_yellow_60">#F8DD05</color>
+    <color name="global_primary_yellow_70">#FFD102</color>
+    <color name="global_primary_yellow_80">#F0C400</color>
+    <color name="global_primary_yellow_90">#DBB300</color>
+    <color name="global_primary_yellow_100">#CCA700</color>
 
-    <color name="specific_background">@color/white</color>
-    <color name="specific_background_inverse">#3A3C3F</color>
-    <color name="specific_background_disabled">#DDDEDD</color>
+    <color name="global_primary_blue_10">#ECF6FE</color>
+    <color name="global_primary_blue_20">#C6E5FB</color>
+    <color name="global_primary_blue_30">#95CFF8</color>
+    <color name="global_primary_blue_40">#61B8F5</color>
+    <color name="global_primary_blue_50">#3AA8F4</color>
+    <color name="global_primary_blue_60">#019BF2</color>
+    <color name="global_primary_blue_70">#008CE4</color>
+    <color name="global_primary_blue_80">#007AD2</color>
+    <color name="global_primary_blue_90">#0069C0</color>
+    <color name="global_primary_blue_100">#004BA1</color>
+
+    <color name="global_monza_10">#FFEAED</color>
+    <color name="global_monza_20">#FFCBD0</color>
+    <color name="global_monza_30">#F69695</color>
+    <color name="global_monza_40">#EE6C6C</color>
+    <color name="global_monza_50">#F84746</color>
+    <color name="global_monza_60">#FD3027</color>
+    <color name="global_monza_70">#EF2327</color>
+    <color name="global_monza_80">#DD1322</color>
+    <color name="global_monza_90">#D0021A</color>
+    <color name="global_monza_100">#B20009</color>
+
+    <color name="global_fern_10">#E7F4EA</color>
+    <color name="global_fern_20">#C5E5CC</color>
+    <color name="global_fern_30">#9FD4AC</color>
+    <color name="global_fern_40">#79C48C</color>
+    <color name="global_fern_50">#5CB774</color>
+    <color name="global_fern_60">#3EAB5C</color>
+    <color name="global_fern_70">#379C53</color>
+    <color name="global_fern_80">#2D8A47</color>
+    <color name="global_fern_90">#25793D</color>
+    <color name="global_fern_100">#175A2A</color>
+
+    <color name="global_gold_10">#FBF3DF</color>
+    <color name="global_gold_20">#FBEED0</color>
+    <color name="global_gold_30">#F8E4B4</color>
+    <color name="global_gold_40">#F4D886</color>
+    <color name="global_gold_50">#F1CF6A</color>
+    <color name="global_gold_60">#EEC64E</color>
+    <color name="global_gold_70">#EBBE1D</color>
+    <color name="global_gold_80">#EAAD11</color>
+    <color name="global_gold_90">#E9A100</color>
+    <color name="global_gold_100">#E67600</color>
+
+    <color name="global_turquoise_10">#E7F7FD</color>
+    <color name="global_turquoise_20">#C6EBFB</color>
+    <color name="global_turquoise_30">#AAE2F8</color>
+    <color name="global_turquoise_40">#6AD1F1</color>
+    <color name="global_turquoise_50">#36BCEC</color>
+    <color name="global_turquoise_60">#159DC6</color>
+    <color name="global_turquoise_70">#127B96</color>
+    <color name="global_turquoise_80">#10657E</color>
+    <color name="global_turquoise_90">#0F4F67</color>
+    <color name="global_turquoise_100">#0C3B4F</color>
+
+    <color name="specific_content">@color/global_gray_100</color>
+    <color name="specific_content_inverse">@color/global_basic_white</color>
+    <color name="specific_content_disabled">@color/global_gray_50</color>
+
+    <color name="specific_background">@color/global_basic_white</color>
+    <color name="specific_background_inverse">@color/global_gray_100</color>
+    <color name="specific_background_disabled">@color/global_gray_30</color>
+
+    <color name="specific_semantic_info">@color/global_primary_blue_60</color>
+    <color name="specific_semantic_info_light">@color/global_primary_blue_10</color>
+    <color name="specific_semantic_danger">@color/global_monza_60</color>
+    <color name="specific_semantic_danger_light">@color/global_monza_10</color>
+    <color name="specific_semantic_warning">@color/global_gold_90</color>
+    <color name="specific_semantic_warning_light">@color/global_gold_10</color>
+    <color name="specific_semantic_success">@color/global_fern_60</color>
+    <color name="specific_semantic_success_light">@color/global_fern_10</color>
 
     <array name="rainbow">
         <item>@color/orange</item>

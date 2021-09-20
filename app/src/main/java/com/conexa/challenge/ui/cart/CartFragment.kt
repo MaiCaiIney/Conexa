@@ -12,6 +12,8 @@ import com.conexa.challenge.databinding.ItemCartBinding
 import com.conexa.challenge.model.CartItem
 import com.conexa.challenge.model.Product
 import com.conexa.challenge.utils.formatPrice
+import com.conexa.challenge.view.Toast
+import com.conexa.challenge.view.Type
 import com.conexa.challenge.viewmodel.CartViewModel
 import com.squareup.picasso.Picasso
 
@@ -45,6 +47,11 @@ class CartFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.menu_item_clear) {
             viewModel.clear()
+            Toast.show(
+                binding.root,
+                R.string.cart_empty_toast,
+                Type.WARNING
+            )
             true
         } else super.onOptionsItemSelected(item)
     }
@@ -94,10 +101,10 @@ class CartFragment : Fragment() {
                     tvCartItemName.text = product.title
                     tvCartItemPrice.text = product.price.formatPrice()
                     Picasso.get().load(product.image).into(ivCartItemImage)
+                    tvCartItemCount.text = item.count.toString()
 
                     btCartItemDown.setOnClickListener { onDownButtonClicked.invoke(product) }
                     btCartItemUp.setOnClickListener { onUpButtonClicked.invoke(product) }
-                    tvCartItemCount.text = item.count.toString()
                 }
             }
         }

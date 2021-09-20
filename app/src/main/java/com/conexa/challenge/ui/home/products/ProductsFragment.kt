@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.conexa.challenge.R
 import com.conexa.challenge.databinding.FragmentProductsBinding
+import com.conexa.challenge.model.Resource
 import com.conexa.challenge.ui.home.products.detail.ProductDetailFragment
 import com.conexa.challenge.viewmodel.ProductsViewModel
 import com.xwray.groupie.GroupieAdapter
@@ -61,14 +62,47 @@ class ProductsFragment : Fragment() {
 
     private fun subscribeUi() {
         viewModel.products.observe(viewLifecycleOwner, {
-            it?.data?.map { product -> ProductItem(product) }?.let { list ->
-                adapter.replaceAll(list)
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    val isEmpty = it.data?.isEmpty() ?: false
+                    binding.apply {
+                        rvProducts.isVisible = !isEmpty
+                        tvProductsMessageTitle.isVisible = isEmpty
+                        tvProductsMessageDescription.isVisible = isEmpty
+                    }
+
+                    if (isEmpty) {
+                        binding.apply {
+                            tvProductsMessageTitle.text = getString(R.string.products_empty_title)
+                            tvProductsMessageDescription.text =
+                                getString(R.string.products_empty_description)
+                        }
+                    } else {
+                        it?.data?.map { product -> ProductItem(product) }?.let { list ->
+                            adapter.replaceAll(list)
+                        }
+                    }
+                }
+                Resource.Status.ERROR -> {
+                    binding.apply {
+                        tvProductsMessageTitle.isVisible = true
+                        tvProductsMessageDescription.isVisible = true
+                        tvProductsMessageTitle.text = getString(R.string.products_error_title)
+                        tvProductsMessageDescription.text =
+                            getString(R.string.products_error_description)
+                    }
+                }
+                Resource.Status.LOADING -> {
+                }
             }
+            binding.pbProducts.isVisible = it.isLoading()
         })
 
         viewModel.filter.observe(viewLifecycleOwner, {
-            binding.tvProductsFilter.isVisible = it != null
-            binding.tvProductsFilter.text = it
+            binding.tvProductsFilter.apply {
+                isVisible = it != null
+                text = it
+            }
         })
     }
 
@@ -97,6 +131,9 @@ class ProductsFragment : Fragment() {
         val bundle = Bundle().apply {
             putSerializable(ProductDetailFragment.EXTRA_PRODUCT, (item as ProductItem).product)
         }
-        findNavController().navigate(R.id.action_fragment_products_to_fragment_product_detail, bundle)
+        findNavController().navigate(
+            R.id.action_fragment_products_to_fragment_product_detail,
+            bundle
+        )
     }
 }
