@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -27,5 +28,8 @@ class ConexaModule {
     @Provides
     fun provideOkHttpClient() = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        .connectTimeout(BuildConfig.TIME_OUT, TimeUnit.SECONDS)
+        .readTimeout(BuildConfig.TIME_OUT, TimeUnit.SECONDS)
+        .writeTimeout(BuildConfig.TIME_OUT, TimeUnit.SECONDS)
         .build()
 }

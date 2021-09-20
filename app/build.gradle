@@ -42,12 +42,14 @@ android {
             applicationIdSuffix = ".develop"
             versionNameSuffix = "-develop"
             buildConfigField "String", "API_URL", "\"https://fakestoreapi.com/\""
+            buildConfigField "Long", "TIME_OUT", "60L"
         }
 
         create("production") {
             dimension = "environment"
             applicationIdSuffix = ".production"
             buildConfigField "String", "API_URL", "\"https://fakestoreapi.com/\""
+            buildConfigField "Long", "TIME_OUT", "60L"
         }
     }
 }
