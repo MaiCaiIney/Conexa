@@ -18,4 +18,7 @@
     <string name="cart_empty_title">Your cart is empty</string>
     <string name="cart_empty_description">Not sure what to buy?\nThousands of products await you!</string>
     <string name="cart_empty_toast">All products were removed from the cart</string>
+    <string name="cart_continue_modal_title">Thank you for your purchase!</string>
+    <string name="cart_continue_modal_message">The purchase order was successful.\nIn the next few days you will receive your products.</string>
+    <string name="cart_continue_modal_button">OK</string>
 </resources>

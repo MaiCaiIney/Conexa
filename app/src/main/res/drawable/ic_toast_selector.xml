@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:drawable="@drawable/ic_toast_info" app:type_info="true" />
-    <item android:drawable="@drawable/ic_toast_positive" app:type_positive="true" />
-    <item android:drawable="@drawable/ic_toast_warning" app:type_warning="true" />
-    <item android:drawable="@drawable/ic_toast_negative" app:type_negative="true" />
-</selector>

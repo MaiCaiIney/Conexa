@@ -2,6 +2,7 @@ package com.conexa.challenge.ui.cart
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -12,6 +13,7 @@ import com.conexa.challenge.databinding.ItemCartBinding
 import com.conexa.challenge.model.CartItem
 import com.conexa.challenge.model.Product
 import com.conexa.challenge.utils.formatPrice
+import com.conexa.challenge.view.Modal
 import com.conexa.challenge.view.Toast
 import com.conexa.challenge.view.Type
 import com.conexa.challenge.viewmodel.CartViewModel
@@ -92,6 +94,16 @@ class CartFragment : Fragment() {
             onDownButtonClicked = { product -> viewModel.deleteItem(product) },
             onUpButtonClicked = { product -> viewModel.addItem(product) }
         )
+
+        binding.btCartContinue.setOnClickListener {
+            Modal(requireContext()).apply {
+                setIcon(ResourcesCompat.getDrawable(resources, R.drawable.ic_message_type_positive, null))
+                setTitle(getString(R.string.cart_continue_modal_title))
+                setMessage(getString(R.string.cart_continue_modal_message))
+                setButton(getString(R.string.cart_continue_modal_button))
+                setOnClickListener { viewModel.clear() }
+            }.show()
+        }
     }
 
     private inner class CartAdapter(

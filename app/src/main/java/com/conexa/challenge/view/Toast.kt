@@ -13,10 +13,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.conexa.challenge.R
 import com.google.android.material.snackbar.BaseTransientBottomBar
 
-enum class Type {
-    INFO, POSITIVE, WARNING, NEGATIVE
-}
-
 open class Toast protected constructor(
     parent: ViewGroup,
     content: View,
@@ -91,11 +87,6 @@ open class Toast protected constructor(
         private class ToastLayout(context: Context, attrs: AttributeSet?) :
             LinearLayout(context, attrs) {
 
-            private val TYPE_INFO = intArrayOf(R.attr.type_info)
-            private val TYPE_POSITIVE = intArrayOf(R.attr.type_positive)
-            private val TYPE_WARNING = intArrayOf(R.attr.type_warning)
-            private val TYPE_NEGATIVE = intArrayOf(R.attr.type_negative)
-
             private lateinit var type: Type
 
             override fun onCreateDrawableState(extraSpace: Int): IntArray {
@@ -128,6 +119,13 @@ open class Toast protected constructor(
                 val inflater =
                     context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 inflater.inflate(R.layout.toast, this, true)
+            }
+
+            companion object {
+                private val TYPE_POSITIVE = intArrayOf(R.attr.type_positive)
+                private val TYPE_INFO = intArrayOf(R.attr.type_info)
+                private val TYPE_WARNING = intArrayOf(R.attr.type_warning)
+                private val TYPE_NEGATIVE = intArrayOf(R.attr.type_negative)
             }
         }
     }

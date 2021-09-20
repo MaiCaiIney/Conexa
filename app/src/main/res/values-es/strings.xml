@@ -19,4 +19,7 @@
     <string name="cart_empty_title">Tu carrito está vacío</string>
     <string name="cart_empty_description">¿No sabes qué comprar?\n¡Miles de productos te esperan!</string>
     <string name="cart_empty_toast">Se eliminaron todos los productos de tu carrito</string>
+    <string name="cart_continue_modal_title">¡Muchas gracias por su compra!</string>
+    <string name="cart_continue_modal_message">El pedido se realizó correctamente.\nEn los próximos días recibirás tus productos.</string>
+    <string name="cart_continue_modal_button">Aceptar</string>
 </resources>

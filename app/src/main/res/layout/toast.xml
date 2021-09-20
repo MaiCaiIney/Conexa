@@ -15,12 +15,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:duplicateParentState="true"
-        android:src="@drawable/ic_toast_selector"
+        android:src="@drawable/ic_message_type_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/toast_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_toast_info" />
+        tools:srcCompat="@drawable/ic_message_type_info" />
 
     <TextView
         android:id="@+id/toast_text"
