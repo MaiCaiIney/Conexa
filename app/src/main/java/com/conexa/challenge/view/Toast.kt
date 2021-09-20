@@ -66,7 +66,7 @@ open class Toast protected constructor(
             }
             val toast = Toast(parent, content, contentViewCallback)
             toast.getView().setPadding(0, 0, 0, 0)
-            toast.duration = 3000
+            toast.duration = 2000
             return toast
         }
 

@@ -18,6 +18,9 @@ class CartViewModel : ViewModel() {
     private val _emptyCart = MutableLiveData(true)
     val emptyCart: LiveData<Boolean> = _emptyCart
 
+    private val _menuEnabled = MutableLiveData(true)
+    val menuEnabled: LiveData<Boolean> = _emptyCart
+
     fun addItem(product: Product) {
         var item = _cart.value?.find { cartItem -> cartItem.product.id == product.id }
 
@@ -64,5 +67,6 @@ class CartViewModel : ViewModel() {
 
     private fun emptyCart() {
         _emptyCart.postValue(_cart.value?.isEmpty() ?: true)
+        _menuEnabled.postValue(_cart.value?.isEmpty() == false)
     }
 }

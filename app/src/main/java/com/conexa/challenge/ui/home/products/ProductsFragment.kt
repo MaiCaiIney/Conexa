@@ -10,6 +10,7 @@ import com.conexa.challenge.R
 import com.conexa.challenge.databinding.FragmentProductsBinding
 import com.conexa.challenge.model.Resource
 import com.conexa.challenge.ui.home.products.detail.ProductDetailFragment
+import com.conexa.challenge.viewmodel.CartViewModel
 import com.conexa.challenge.viewmodel.ProductsViewModel
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.OnItemClickListener
@@ -21,6 +22,10 @@ class ProductsFragment : Fragment() {
 
     private lateinit var binding: FragmentProductsBinding
     private val viewModel by activityViewModels<ProductsViewModel>()
+    private val cartViewModel by activityViewModels<CartViewModel>()
+
+    private var enabledMenu = false
+    private var emptyCart = true
 
     private lateinit var adapter: GroupieAdapter
 
@@ -36,7 +41,7 @@ class ProductsFragment : Fragment() {
     ): View {
         binding = FragmentProductsBinding.inflate(inflater, container, false)
 
-        initLayout()
+        initUi()
         subscribeUi()
 
         return binding.root
@@ -58,6 +63,12 @@ class ProductsFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.menu_item_filter).isEnabled = enabledMenu
+        val icon = if (emptyCart) R.drawable.ic_cesta else R.drawable.ic_cesta_no_vacia
+        menu.findItem(R.id.menu_item_cart).setIcon(icon)
     }
 
     private fun subscribeUi() {
@@ -104,9 +115,19 @@ class ProductsFragment : Fragment() {
                 text = it
             }
         })
+
+        viewModel.categories.observe(viewLifecycleOwner, {
+            enabledMenu = it.isSuccessful() && it.data?.isEmpty() == false
+            activity?.invalidateOptionsMenu()
+        })
+
+        cartViewModel.emptyCart.observe(viewLifecycleOwner, {
+            emptyCart = it
+            activity?.invalidateOptionsMenu()
+        })
     }
 
-    private fun initLayout() {
+    private fun initUi() {
         adapter = GroupieAdapter().apply {
             setOnItemClickListener(navigateToProductDetail)
             add(Section().apply {

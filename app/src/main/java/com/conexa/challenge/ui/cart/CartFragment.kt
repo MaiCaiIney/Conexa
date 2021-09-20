@@ -21,6 +21,7 @@ class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
     private val viewModel by activityViewModels<CartViewModel>()
+    private var enabledMenu = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +57,10 @@ class CartFragment : Fragment() {
         } else super.onOptionsItemSelected(item)
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.menu_item_clear).isEnabled = enabledMenu
+    }
+
     private fun subscribeUi() {
         viewModel.cart.observe(viewLifecycleOwner, {
             (binding.rvCartItems.adapter as CartAdapter).submitData(it)
@@ -74,6 +79,11 @@ class CartFragment : Fragment() {
                 tvCartTotalDescription.isVisible = !it
                 tvCartTotalPrice.isVisible = !it
             }
+        })
+
+        viewModel.menuEnabled.observe(viewLifecycleOwner, {
+            enabledMenu = !it
+            activity?.invalidateOptionsMenu()
         })
     }
 
