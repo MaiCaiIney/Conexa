@@ -6,11 +6,15 @@
     <string name="products_empty_title">No se encontraron productos</string>
     <string name="products_empty_description">¡Podes buscar en otra categoría!</string>
     <string name="products_error_title">¡Ops!</string>
-    <string name="products_error_description">Ocurrió un error. Por favor, reintentá más tarde.</string>
+    <string name="products_error_description">Ocurrió un error.\nPor favor, reintentá más tarde.</string>
+    <string name="products_sorted_by">Seleccionar</string>
+    <string name="products_sorted_by_price">Precio</string>
+    <string name="products_sorted_by_name">Nombre</string>
+    <string name="products_sorted_by_rating">Puntuación</string>
 
     <!-- String related to fragment_product_detail -->
     <string name="product_detail_button_add">Agregar al carrito</string>
-    <string name="product_detail_toast_success">Se agregó el producto a tu carrito</string>
+    <string name="product_detail_toast_success">Se agregó el producto a tu carrito.</string>
 
     <!-- String related to fragment_cart -->
     <string name="cart_button_continue">Continuar</string>
@@ -18,7 +22,7 @@
     <string name="cart_total">Total</string>
     <string name="cart_empty_title">Tu carrito está vacío</string>
     <string name="cart_empty_description">¿No sabes qué comprar?\n¡Miles de productos te esperan!</string>
-    <string name="cart_empty_toast">Se eliminaron todos los productos de tu carrito</string>
+    <string name="cart_empty_toast">Se eliminaron todos los productos de tu carrito.</string>
     <string name="cart_continue_modal_title">¡Muchas gracias por su compra!</string>
     <string name="cart_continue_modal_message">El pedido se realizó correctamente.\nEn los próximos días recibirás tus productos.</string>
     <string name="cart_continue_modal_button">Aceptar</string>

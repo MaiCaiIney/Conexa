@@ -2,6 +2,10 @@ package com.conexa.challenge.ui.home.products
 
 import android.os.Bundle
 import android.view.*
+import androidx.annotation.MenuRes
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -24,7 +28,7 @@ class ProductsFragment : Fragment() {
     private val viewModel by activityViewModels<ProductsViewModel>()
     private val cartViewModel by activityViewModels<CartViewModel>()
 
-    private var enabledMenu = false
+    private var enabledMenuFilter = false
     private var emptyCart = true
 
     private lateinit var adapter: GroupieAdapter
@@ -66,22 +70,29 @@ class ProductsFragment : Fragment() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.menu_item_filter).isEnabled = enabledMenu
+        menu.findItem(R.id.menu_item_filter).isEnabled = enabledMenuFilter
         val icon = if (emptyCart) R.drawable.ic_cesta else R.drawable.ic_cesta_no_vacia
         menu.findItem(R.id.menu_item_cart).setIcon(icon)
     }
 
     private fun subscribeUi() {
         viewModel.products.observe(viewLifecycleOwner, {
+            val isEmpty = it.data?.isEmpty() ?: true
+
+            binding.apply {
+                rvProducts.isVisible = it.isSuccessful() && !isEmpty
+
+                tvProductsMessageTitle.isVisible = !it.isLoading() && (it.isError() || isEmpty)
+                tvProductsMessageDescription.isVisible = !it.isLoading() && (it.isError() || isEmpty)
+
+                tvProductsSortedBy.isEnabled = !isEmpty
+                btProductsSortedByDirection.isEnabled = !isEmpty
+
+                pbProducts.isVisible = it.isLoading()
+            }
+
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    val isEmpty = it.data?.isEmpty() ?: false
-                    binding.apply {
-                        rvProducts.isVisible = !isEmpty
-                        tvProductsMessageTitle.isVisible = isEmpty
-                        tvProductsMessageDescription.isVisible = isEmpty
-                    }
-
                     if (isEmpty) {
                         binding.apply {
                             tvProductsMessageTitle.text = getString(R.string.products_empty_title)
@@ -96,8 +107,6 @@ class ProductsFragment : Fragment() {
                 }
                 Resource.Status.ERROR -> {
                     binding.apply {
-                        tvProductsMessageTitle.isVisible = true
-                        tvProductsMessageDescription.isVisible = true
                         tvProductsMessageTitle.text = getString(R.string.products_error_title)
                         tvProductsMessageDescription.text =
                             getString(R.string.products_error_description)
@@ -106,7 +115,6 @@ class ProductsFragment : Fragment() {
                 Resource.Status.LOADING -> {
                 }
             }
-            binding.pbProducts.isVisible = it.isLoading()
         })
 
         viewModel.filter.observe(viewLifecycleOwner, {
@@ -117,13 +125,25 @@ class ProductsFragment : Fragment() {
         })
 
         viewModel.categories.observe(viewLifecycleOwner, {
-            enabledMenu = it.isSuccessful() && it.data?.isEmpty() == false
+            enabledMenuFilter = it.isSuccessful() && it.data?.isEmpty() == false
             activity?.invalidateOptionsMenu()
         })
 
         cartViewModel.emptyCart.observe(viewLifecycleOwner, {
             emptyCart = it
             activity?.invalidateOptionsMenu()
+        })
+
+        viewModel.orderDesc.observe(viewLifecycleOwner, {
+            val id = if (it) R.drawable.ic_down else R.drawable.ic_up
+            ViewCompat.setBackground(
+                binding.btProductsSortedByDirection,
+                ResourcesCompat.getDrawable(resources, id, null)
+            )
+        })
+
+        viewModel.productsSortedBy.observe(viewLifecycleOwner, {
+            binding.tvProductsSortedBy.text = getString(it)
         })
     }
 
@@ -138,6 +158,40 @@ class ProductsFragment : Fragment() {
         binding.rvProducts.adapter = adapter
 
         binding.tvProductsFilter.setOnClickListener { viewModel.searchProducts() }
+
+        binding.tvProductsSortedBy.setOnClickListener { view ->
+            showMenuOrder(
+                view,
+                R.menu.menu_products_order
+            )
+        }
+
+        binding.btProductsSortedByDirection.setOnClickListener {
+            viewModel.changeOrder()
+        }
+    }
+
+    private fun showMenuOrder(view: View, @MenuRes menuRes: Int) {
+        val wrapper = ContextThemeWrapper(context, R.style.Theme_Conexa_Popup)
+        PopupMenu(wrapper, view).apply {
+            menuInflater.inflate(menuRes, this.menu)
+            setOnMenuItemClickListener { menuItem: MenuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_item_order_by_price -> {
+                        viewModel.orderProductsByPrice()
+                        true
+                    }
+                    R.id.menu_item_order_by_rating -> {
+                        viewModel.orderProductsByRating()
+                        true
+                    }
+                    else -> {
+                        viewModel.orderProductsByName()
+                        true
+                    }
+                }
+            }
+        }.show()
     }
 
     private fun navigateToCategories() {

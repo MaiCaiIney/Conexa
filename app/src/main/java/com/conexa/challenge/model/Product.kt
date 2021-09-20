@@ -8,5 +8,11 @@ data class Product(
     val price: Float,
     val category: String,
     val description: String,
-    val image: String
-): Serializable
+    val image: String,
+    val rating: Rating
+) : Serializable
+
+data class Rating(
+    val rate: Float,
+    val count: Int
+) : Serializable

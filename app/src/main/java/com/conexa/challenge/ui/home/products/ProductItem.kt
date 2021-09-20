@@ -13,6 +13,7 @@ class ProductItem(val product: Product): BindableItem<ItemProductBinding>() {
     override fun bind(viewBinding: ItemProductBinding, position: Int) {
         viewBinding.tvProductName.text = product.title
         viewBinding.tvProductPrice.text = product.price.formatPrice()
+        viewBinding.tvProductRate.text = product.rating.rate.toString()
         Picasso.get().load(product.image).into(viewBinding.ivProductImage)
     }
 
