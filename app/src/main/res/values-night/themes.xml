@@ -12,6 +12,8 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="shapeAppearanceLargeComponent">@style/Theme.Conexa.BottomSheetDialog</item>
         <item name="android:buttonStyle">@style/Theme.Conexa.Button</item>
+        <item name="android:actionMenuTextAppearance">@style/Button</item>
+        <item name="android:actionMenuTextColor">@color/colorText</item>
     </style>
 
     <color name="colorText">@color/specific_content_inverse</color>

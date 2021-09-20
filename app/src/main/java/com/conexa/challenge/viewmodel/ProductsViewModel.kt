@@ -36,7 +36,7 @@ class ProductsViewModel @Inject constructor(
         _products.postValue(result)
     }
 
-    fun categories() = viewModelScope.launch(Dispatchers.Main) {
+    private fun categories() = viewModelScope.launch(Dispatchers.Main) {
         _categories.postValue(Resource.loading())
         val result = withContext(Dispatchers.IO) {
             repository.categories()

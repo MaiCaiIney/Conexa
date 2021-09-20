@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.conexa.challenge.databinding.FragmentProductDetailBinding
 import com.conexa.challenge.model.Product
 import com.conexa.challenge.utils.formatPrice
+import com.conexa.challenge.viewmodel.CartViewModel
 import com.squareup.picasso.Picasso
 
 class ProductDetailFragment : Fragment() {
@@ -17,7 +19,8 @@ class ProductDetailFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentProductDetailBinding
-    private lateinit var product: Product
+    private val viewModel by activityViewModels<CartViewModel>()
+    private var product: Product? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +30,7 @@ class ProductDetailFragment : Fragment() {
 
         arguments?.getSerializable(EXTRA_PRODUCT)?.let { product = it as Product }
 
-        bind(product)
+        product?.let { bind(it) }
 
         return binding.root
     }
@@ -39,6 +42,8 @@ class ProductDetailFragment : Fragment() {
             tvProductDetailDescription.text = product.description
 
             Picasso.get().load(product.image).into(ivProductDetailImage)
+
+            btProductDetailAdd.setOnClickListener { viewModel.addItem(product) }
         }
     }
 }

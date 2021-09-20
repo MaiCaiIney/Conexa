@@ -19,6 +19,13 @@
             app:exitAnim="@anim/fragment_exit_to_right"
             app:popEnterAnim="@anim/fragment_enter_from_left"
             app:popExitAnim="@anim/fragment_exit_to_left" />
+        <action
+            android:id="@+id/action_fragment_products_to_fragment_cart"
+            app:destination="@id/fragment_cart"
+            app:enterAnim="@anim/fragment_enter_from_right"
+            app:exitAnim="@anim/fragment_exit_to_right"
+            app:popEnterAnim="@anim/fragment_enter_from_left"
+            app:popExitAnim="@anim/fragment_exit_to_left" />
     </fragment>
 
     <dialog
@@ -30,4 +37,9 @@
         android:id="@+id/fragment_product_detail"
         android:name="com.conexa.challenge.ui.home.products.detail.ProductDetailFragment"
         tools:layout="@layout/fragment_product_detail" />
+
+    <fragment
+        android:id="@+id/fragment_cart"
+        android:name="com.conexa.challenge.ui.cart.CartFragment"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

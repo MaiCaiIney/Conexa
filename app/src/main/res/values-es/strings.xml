@@ -4,4 +4,11 @@
 
     <!-- String related to product detail -->
     <string name="product_detail_button_add">Agregar al carrito</string>
+
+    <!-- String related to cart -->
+    <string name="cart_button_continue">Continuar</string>
+    <string name="cart_menu_clear">Limpiar</string>
+    <string name="cart_total">Total</string>
+    <string name="cart_empty_title">Tu carrito está vacío</string>
+    <string name="cart_empty_description">¿No sabes qué comprar?\n¡Miles de productos te esperan!</string>
 </resources>

@@ -51,9 +51,10 @@ class ProductsFragment : Fragment() {
                 navigateToCategories()
                 true
             }
-            R.id.menu_item_cart ->
-                // TODO navegar al carrito
+            R.id.menu_item_cart -> {
+                navigateToCart()
                 true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -86,6 +87,10 @@ class ProductsFragment : Fragment() {
 
     private fun navigateToCategories() {
         findNavController().navigate(R.id.action_fragment_products_to_fragment_filter_products)
+    }
+
+    private fun navigateToCart() {
+        findNavController().navigate(R.id.action_fragment_products_to_fragment_cart)
     }
 
     private val navigateToProductDetail = OnItemClickListener { item, _ ->
